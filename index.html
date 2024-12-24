@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuento de Adrià</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Cambiado para asegurarse de que ocupe toda la altura */
+            padding: 20px; /* Añadido un poco de espacio alrededor */
+            box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+        }
+        .book {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 50px; /* Añadido espacio extra en la parte inferior para los controles */
+        }
+        .page {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        .page.active {
+            display: block;
+        }
+        .page img {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .page-content {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            word-wrap: break-word; /* Asegura que el texto se ajuste */
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            border-top: 2px solid #f06292;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        .btn {
+            color: white;
+            background-color: #ff69b4;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .btn:hover {
+            background-color: #f06292;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Portada del cuento -->
+        <div class="page active">
+            <img src="portada.jpeg" alt="Portada de Adrià">
+        </div>
+        <!-- Páginas del cuento -->
+        <div class="page">
+            <img src="1.jpeg" alt="Imagen de Adrià">
+            <div class="page-content">
+                En un tranquilo pueblo, vivía un niño de tres años llamado Adrià. Le encantaban los caballos, las jirafas y las cebras. Pasaba sus días rodeado de sus peluches favoritos, soñando con aventuras mágicas.
+            </div>
+        </div>
+        <div class="page">
+            <img src="2.jpeg" alt="Encuentro mágico">
+            <div class="page-content">
+                Un día, mientras jugaba en el jardín, Adrià encontró una llave dorada brillante. Intrigado, decidió seguir el camino que la llave le señalaba.
+            </div>
+        </div>
+        <div class="page">
+            <img src="3.jpeg" alt="Bosque encantado">
+            <div class="page-content">
+                La llave llevó a Adrià a un bosque encantado, donde los árboles susurraban secretos al viento.
+            </div>
+        </div>
+        <div class="page">
+            <img src="4.jpeg" alt="Río brillante">
+            <div class="page-content">
+                En el bosque, encontró un río brillante. Un pez mágico le habló y le dijo que la llave abría un tesoro escondido.
+            </div>
+        </div>
+        <div class="page">
+            <img src="5.jpeg" alt="Montaña misteriosa">
+            <div class="page-content">
+                Adrià siguió al pez hasta una montaña misteriosa, donde enfrentó desafíos valientes para encontrar el tesoro.
+            </div>
+        </div>
+        <div class="page">
+            <img src="6.jpeg" alt="Tesoro mágico">
+            <div class="page-content">
+                Finalmente, Adrià encontró un cofre con un libro mágico que le permitía crear sus propias aventuras.
+            </div>
+        </div>
+        <div class="page">
+            <img src="7.jpeg" alt="Regreso a casa">
+            <div class="page-content">
+                Adrià regresó a casa, donde usó el libro para contar historias mágicas a sus amigos y familia.
+            </div>
+        </div>
+        <div class="page">
+            <img src="8.jpeg" alt="Fin del cuento">
+            <div class="page-content">
+                Desde entonces, Adrià vivió feliz, sabiendo que la verdadera magia estaba en su imaginación.
+            </div>
+        </div>
+
+        <!-- Controles de navegación -->
+        <div class="controls">
+            <button class="btn" onclick="previousPage()">Página Anterior</button>
+            <button class="btn" onclick="nextPage()">Página Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+
+        function updatePages() {
+            pages.forEach((page, index) => {
+                page.classList.toggle('active', index === currentPage);
+            });
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updatePages();
+            }
+        }
+
+        function nextPage() {
+            if (currentPage < pages.length - 1) {
+                currentPage++;
+                updatePages();
+            }
+        }
+
+        updatePages();
+    </script>
+</body>
+</html>
